@@ -6,11 +6,9 @@ extends Node2D
 
 var is_fixed = false
 
-func _process(_delta: float) -> void:
-	if not is_fixed:
-		var x = get_global_mouse_position().x
-		var y = get_global_mouse_position().y
-		if x < VW and x >= 0:
-			position.x = int(x / CELL) * CELL
-		if y < VH and y >= 0:
-			position.y = int(y / CELL) * CELL
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and not is_fixed:
+		if VW > event.position.x and event.position.x >= 0:
+			position.x = int(event.position.x / CELL) * CELL
+		if VH > event.position.y and event.position.y >= 0:
+			position.y = int(event.position.y / CELL) * CELL
