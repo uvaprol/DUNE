@@ -3,7 +3,11 @@
 [sub_resource type="GDScript" id="GDScript_pauk6"]
 script/source = "extends Node2D
 
-const PLATE = [\"res://cell_area_1.tscn\", \"res://cell_area_4.tscn\", \"res://cell_area_6.tscn\"]
+const PLATE = {
+	1: \"res://cell_area_1.tscn\",
+	4: \"res://cell_area_4.tscn\",
+	6: \"res://cell_area_6.tscn\"
+}
 var active = null
 var n
 
@@ -16,15 +20,15 @@ func choice_plate() -> void:
 	add_child(plate)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(\"one\"):
-		n = 0
-		choice_plate()
-	if Input.is_action_just_pressed(\"four\"):
-		n = 1
-		choice_plate()
-	if Input.is_action_just_pressed(\"six\"):
-		n = 2
-		choice_plate()
+	#if Input.is_action_just_pressed(\"one\"):
+		#n = 0
+		#choice_plate()
+	#if Input.is_action_just_pressed(\"four\"):
+		#n = 1
+		#choice_plate()
+	#if Input.is_action_just_pressed(\"six\"):
+		#n = 2
+		#choice_plate()
 	if Input.is_action_just_pressed(\"spawn\") and active:
 		active.is_fixed = true
 		active = null 
@@ -32,6 +36,12 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(\"despawn\") and active:
 		active.queue_free()
 		active = null 
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		n = int(event.as_text_keycode())
+		if n in PLATE:
+			choice_plate()
 "
 
 [node name="testPlace" type="Node2D" unique_id=1226895358]
