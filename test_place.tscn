@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c1oal3kngmgxe"]
+
+[sub_resource type="GDScript" id="GDScript_pauk6"]
+script/source = "extends Node2D
+
+const PLATE = [\"res://cell_area_1.tscn\", \"res://cell_area_4.tscn\", \"res://cell_area_6.tscn\"]
+var active = null
+var n
+
+func choice_plate() -> void:
+	var plate = load(PLATE[n]).instantiate()
+	if active:
+		active.queue_free()
+	active = plate
+	plate.position = get_global_mouse_position()
+	add_child(plate)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(\"one\"):
+		n = 0
+		choice_plate()
+	if Input.is_action_just_pressed(\"four\"):
+		n = 1
+		choice_plate()
+	if Input.is_action_just_pressed(\"six\"):
+		n = 2
+		choice_plate()
+	if Input.is_action_just_pressed(\"spawn\") and active:
+		active.is_fixed = true
+		active = null 
+		choice_plate()
+	if Input.is_action_just_pressed(\"despawn\") and active:
+		active.queue_free()
+		active = null 
+"
+
+[node name="testPlace" type="Node2D" unique_id=1226895358]
+script = SubResource("GDScript_pauk6")

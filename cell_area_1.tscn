@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dqldsdr4x2pgc"]
+
+[ext_resource type="Script" uid="uid://bbntgs362wo38" path="res://Scripts/cell_orientation.gd" id="1_qgjy7"]
+
+[node name="CellArea1" type="Node2D" unique_id=972957007]
+script = ExtResource("1_qgjy7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1025134074]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.9621795, 2.7915835e-06, 0.52228355, 1)
+metadata/_edit_use_anchors_ = true

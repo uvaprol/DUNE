@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cyybi5j2cvgq4"]
+
+[ext_resource type="Script" uid="uid://bbntgs362wo38" path="res://Scripts/cell_orientation.gd" id="1_ku88h"]
+
+[node name="CellArea4" type="Node2D" unique_id=972957007]
+script = ExtResource("1_ku88h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1025134074]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.113917165, 0.6620289, 0.27778602, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=1056261470]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113917165, 0.6620289, 0.27778602, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect" unique_id=2114056341]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -40.0
+offset_right = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.113917165, 0.6620289, 0.27778602, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="ColorRect" unique_id=1709034031]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113917165, 0.6620289, 0.27778602, 1)
+metadata/_edit_use_anchors_ = true
