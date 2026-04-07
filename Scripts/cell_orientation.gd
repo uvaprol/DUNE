@@ -7,9 +7,7 @@ const CELL: int = 40
 @export var ROW = 2
 @export var COL = 2
 @onready var viewport = get_viewport().get_visible_rect().size
-@warning_ignore("integer_division")
 @onready var VW = viewport.x 
-@warning_ignore("integer_division")
 @onready var VH = viewport.y
 
 var is_fixed = false
@@ -28,8 +26,7 @@ func _input(event: InputEvent) -> void:
 			update_position(event.position)
 		if event is InputEventMouseButton:
 			if can_fixed:
-				if event.button_index == 1:
-					print(event.button_index)
+				if event.button_index == 1 and event.pressed:
 					is_fixed = true
 					emit_signal("plate_is_fixed")
 			else:
