@@ -3,10 +3,14 @@
 [sub_resource type="GDScript" id="GDScript_pauk6"]
 script/source = "extends Node2D
 
+#signal fixed_plate
+
 const PLATE = {
 	1: \"res://cell_area_1.tscn\",
 	4: \"res://cell_area_4.tscn\",
-	6: \"res://cell_area_6.tscn\"
+	6: \"res://cell_area_6.tscn\",
+	7: \"res://concrete_platform.tscn\",
+	8: \"res://windtrap.tscn\"
 }
 var active = null
 var n
@@ -16,24 +20,31 @@ func choice_plate() -> void:
 	if active:
 		active.queue_free()
 	active = plate
-	plate.position = get_global_mouse_position()
+	active.plate_is_fixed.connect(_on_plate_is_fixed)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	add_child(plate)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(\"spawn\") and active:
-		active.is_fixed = true
-		active.process_mode = 4
-		active = null 
-		choice_plate()
+	#if Input.is_action_just_pressed(\"spawn\") and active:
+		#active.is_fixed = true
+		##emit_signal(\"fixed_plate\")
+		#active = null 
+		#choice_plate()
 	if Input.is_action_just_pressed(\"despawn\") and active:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		active.queue_free()
 		active = null 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		n = int(event.as_text_keycode())
-		if n in PLATE:
-			choice_plate()
+		if n != int(event.as_text_keycode()):
+			n = int(event.as_text_keycode())
+			if n in PLATE:
+				choice_plate()
+
+func _on_plate_is_fixed() -> void:
+	active = null 
+	choice_plate()
 "
 
 [node name="testPlace" type="Node2D" unique_id=1226895358]

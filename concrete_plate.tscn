@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cd8h8ic8eo5k0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cq4k1"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2l5a"]
+size = Vector2(40, 40)
+
+[node name="concrete_plate" type="Area2D" unique_id=2063591308]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=339918787]
+position = Vector2(20, 20)
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("CompressedTexture2D_cq4k1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584783370]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_j2l5a")

@@ -6,15 +6,8 @@
 script = ExtResource("1_rgo0t")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1025134074]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_right = 40.0
+offset_bottom = 40.0
 color = Color(0.7203856, 0.72907615, 1.1551381e-06, 1)
 metadata/_edit_use_anchors_ = true
 
