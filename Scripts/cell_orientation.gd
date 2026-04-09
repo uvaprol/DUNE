@@ -14,11 +14,13 @@ var is_fixed = false
 var can_fixed = true
 
 func update_position(pos):
-	position.x = clamp(int(pos.x / CELL) * CELL, 0, VW - CELL * ROW)
-	position.y = clamp(int(pos.y / CELL) * CELL, 0, VH - CELL * COL)
+	position.x = clamp(int(pos.x / CELL) * CELL, 0, int(VW / CELL) * CELL - CELL * ROW)
+	position.y = clamp(int(pos.y / CELL) * CELL, 0, int(VH / CELL) * CELL - CELL * COL)
 
 func  _ready() -> void:
 	update_position(get_global_mouse_position())
+	print(VH)
+	print(int(VH / CELL) * CELL - CELL)
 
 func _input(event: InputEvent) -> void:
 	if not is_fixed:
@@ -28,6 +30,7 @@ func _input(event: InputEvent) -> void:
 			if can_fixed:
 				if event.button_index == 1 and event.pressed:
 					is_fixed = true
+					print(position.y)
 					emit_signal("plate_is_fixed")
 			else:
 				print(can_fixed)
