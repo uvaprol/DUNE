@@ -14,13 +14,13 @@ var is_fixed = false
 var can_fixed = true
 
 func update_position(pos):
+	#TODO ограничение относительно положения камеры
 	position.x = clamp(int(pos.x / CELL) * CELL, 0, int(VW / CELL) * CELL - CELL * ROW)
 	position.y = clamp(int(pos.y / CELL) * CELL, 0, int(VH / CELL) * CELL - CELL * COL)
 
 func  _ready() -> void:
 	update_position(get_global_mouse_position())
-	print(VH)
-	print(int(VH / CELL) * CELL - CELL)
+
 
 func _input(event: InputEvent) -> void:
 	if not is_fixed:

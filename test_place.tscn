@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://c1oal3kngmgxe"]
 
+[ext_resource type="Script" uid="uid://b4wwd518r8y5c" path="res://mouse_target.gd" id="1_f1jc6"]
+[ext_resource type="PackedScene" uid="uid://cyybi5j2cvgq4" path="res://cell_area_4.tscn" id="2_ne85i"]
+
 [sub_resource type="GDScript" id="GDScript_pauk6"]
 script/source = "extends Node2D
 
@@ -47,5 +50,21 @@ func _on_plate_is_fixed() -> void:
 	choice_plate()
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne85i"]
+size = Vector2(40, 40)
+
 [node name="testPlace" type="Node2D" unique_id=1226895358]
 script = SubResource("GDScript_pauk6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=985540156]
+position = Vector2(595, 242)
+script = ExtResource("1_f1jc6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1932294100]
+shape = SubResource("RectangleShape2D_ne85i")
+
+[node name="Camera2D" type="Camera2D" parent="Area2D" unique_id=1143632088]
+editor_draw_drag_margin = true
+
+[node name="CellArea4" parent="." unique_id=972957007 instance=ExtResource("2_ne85i")]
+position = Vector2(555, 202)
