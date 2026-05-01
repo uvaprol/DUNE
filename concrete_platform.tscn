@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bhg0fcnrq6b75"]
+
+[ext_resource type="Script" uid="uid://bbntgs362wo38" path="res://Scripts/cell_orientation.gd" id="1_ywc8e"]
+[ext_resource type="PackedScene" uid="uid://cd8h8ic8eo5k0" path="res://concrete_plate.tscn" id="2_cq4k1"]
+
+[node name="concrete_platform" type="Node2D" unique_id=845086412]
+script = ExtResource("1_ywc8e")
+
+[node name="concrete_plate" parent="." unique_id=2063591308 instance=ExtResource("2_cq4k1")]
+
+[node name="concrete_plate2" parent="." unique_id=933670880 instance=ExtResource("2_cq4k1")]
+position = Vector2(40, 0)
+
+[node name="concrete_plate3" parent="." unique_id=332220332 instance=ExtResource("2_cq4k1")]
+position = Vector2(0, 40)
+
+[node name="concrete_plate4" parent="." unique_id=1696676348 instance=ExtResource("2_cq4k1")]
+position = Vector2(40, 40)

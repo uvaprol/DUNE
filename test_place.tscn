@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://c1oal3kngmgxe"]
+
+[ext_resource type="Script" uid="uid://b4wwd518r8y5c" path="res://mouse_target.gd" id="1_f1jc6"]
+[ext_resource type="PackedScene" uid="uid://cyybi5j2cvgq4" path="res://cell_area_4.tscn" id="2_ne85i"]
+
+[sub_resource type="GDScript" id="GDScript_pauk6"]
+script/source = "extends Node2D
+
+#signal fixed_plate
+
+const PLATE = {
+	1: \"res://cell_area_1.tscn\",
+	4: \"res://cell_area_4.tscn\",
+	6: \"res://cell_area_6.tscn\",
+	7: \"res://concrete_platform.tscn\",
+	8: \"res://windtrap.tscn\"
+}
+var active = null
+var n
+
+func choice_plate() -> void:
+	var plate = load(PLATE[n]).instantiate()
+	if active:
+		active.queue_free()
+	active = plate
+	active.plate_is_fixed.connect(_on_plate_is_fixed)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	add_child(plate)
+
+func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed(\"spawn\") and active:
+		#active.is_fixed = true
+		##emit_signal(\"fixed_plate\")
+		#active = null 
+		#choice_plate()
+	if Input.is_action_just_pressed(\"despawn\") and active:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		active.queue_free()
+		active = null 
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if n != int(event.as_text_keycode()):
+			n = int(event.as_text_keycode())
+			if n in PLATE:
+				choice_plate()
+
+func _on_plate_is_fixed() -> void:
+	active = null 
+	choice_plate()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne85i"]
+size = Vector2(40, 40)
+
+[node name="testPlace" type="Node2D" unique_id=1226895358]
+script = SubResource("GDScript_pauk6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=985540156]
+position = Vector2(595, 242)
+script = ExtResource("1_f1jc6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1932294100]
+shape = SubResource("RectangleShape2D_ne85i")
+
+[node name="Camera2D" type="Camera2D" parent="Area2D" unique_id=1143632088]
+editor_draw_drag_margin = true
+
+[node name="CellArea4" parent="." unique_id=972957007 instance=ExtResource("2_ne85i")]
+position = Vector2(555, 202)

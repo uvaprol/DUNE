@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b28l53rq6pgs7"]
+
+[ext_resource type="Script" uid="uid://bbntgs362wo38" path="res://Scripts/cell_orientation.gd" id="1_3nu1c"]
+[ext_resource type="Script" uid="uid://d18dug76txhy7" path="res://Scripts/construction.gd" id="2_t6ban"]
+[ext_resource type="Texture2D" uid="uid://cugdbumk7dssx" path="res://icon.svg" id="3_cpaoq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjj76"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn6oe"]
+size = Vector2(75, 76)
+
+[node name="outpost" type="Node2D" unique_id=1216632747]
+script = ExtResource("1_3nu1c")
+
+[node name="construction" type="StaticBody2D" parent="." unique_id=1744385657]
+script = ExtResource("2_t6ban")
+
+[node name="Sprite2D" type="Sprite2D" parent="construction" unique_id=508232229]
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(0.43529412, 1, 0.43529412, 1)
+position = Vector2(40, 40)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("3_cpaoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="construction" unique_id=688901590]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_jjj76")
+
+[node name="Area2D" type="Area2D" parent="construction" unique_id=2130324190]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="construction/Area2D" unique_id=751961804]
+position = Vector2(39.5, 40)
+shape = SubResource("RectangleShape2D_hn6oe")
+
+[connection signal="area_entered" from="construction/Area2D" to="construction" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="construction/Area2D" to="construction" method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="construction/Area2D" to="construction" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="construction/Area2D" to="construction" method="_on_area_2d_body_exited"]
